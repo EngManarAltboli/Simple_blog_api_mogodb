@@ -8,6 +8,10 @@ const BlogSchema = new Schema({
     title : {
         type : String,
     },
+    state : {
+        type : Boolean,
+        default: false,
+    },
     body : {
         type : String,
     },

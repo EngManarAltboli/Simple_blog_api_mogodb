@@ -24,11 +24,11 @@ exports.create = async (req , res ) => {
             image: image,
             createdBy : userid,
             date : new Date()
-        }).then((data) => {
+        }).then((blogs) => {
             res.json({
                 msg : "Blog created successfully",
                 state : 1,
-                data : data
+                data : blogs
             })
         }).catch((err) => {
             console.log(err)
@@ -137,8 +137,8 @@ exports.getallbyid = async (req , res ) => {
 exports.update = async (req , res ) => {
 
     try {
-        await BlogModel.findOneAndUpdate({_id : req.query.id}, 
-            {state : false} ).then(() => {
+        await BlogModel.findOneAndUpdate({_id : req.params.id}, 
+            {state : true} ).then(() => {
             res.json({
                 msg : "Blog updated successfully",
                 state: 1,
@@ -165,14 +165,14 @@ exports.update = async (req , res ) => {
 
 exports.delete = async (req , res ) => {
     try {
-        await BlogModel.findOneAndDelete({_id : req.query.id}).then(() => {
+        await BlogModel.findOneAndDelete({_id : req.params.id}).then(() => {
             res.json({
                 msg : "BLog deleted  successfully 👍🏼",
                 state: 1,
                 date : []
             })
         }).catch(error => {
-            console.log(eror)
+            console.log(error)
             res.json({
                 msg : "Internal server",
                 state : 0,
